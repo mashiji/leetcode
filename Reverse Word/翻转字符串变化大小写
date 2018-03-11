@@ -1,0 +1,63 @@
+#include <iostream>
+#include<string>
+#include<algorithm>
+using namespace std;
+
+
+class Transform {
+public:
+	string trans(string s, int n) {
+		int i = n - 1;
+		//辅助字符串存放结果字符串
+		string stmp = "";//最后为“sky the”
+		while (i >= 0)
+		{//从后往前
+			while (i >= 0 && s[i] == ' ') //顺序不能换
+			{//(1)处理连续有多个空格的情况
+				stmp.append(" ");
+				i--;
+			}
+			//if(i<0) break;//s处理完空格,若后续没有单词则应跳出循环
+			string wordtmp = "";
+			for (; i >= 0 && s[i] != ' '; i--)
+			{//(2)从后往前遍历,每次取得一个单词赋给wordtmp
+				wordtmp += s[i];
+			}//第一个单词为yks
+			//(3)翻转wordtmp,如yks
+			reverse(wordtmp.begin(), wordtmp.end());
+			/*
+			if(stmp.find_first_not_of(" ")!=string::npos || stmp!="")
+			{//(4)在将翻转后的单词加入到stmp之前先加入空格(若非首单词)
+			stmp.append(" ");
+			}*/
+			stmp.append(wordtmp);//(5)加入到stmp
+		}
+		s = stmp;
+		cout << s << " " << s.size() << endl;
+		//(4)下边用于转换大小写
+		i = 0;
+		while (i<n)
+		{
+			if (s[i] == ' ') i++;
+			else
+			{
+				s[i] = isupper(s[i]) ? tolower(s[i]) : toupper(s[i]);
+				i++;
+			}
+		}
+		return s;
+	}
+};
+
+int main()
+{
+	Transform t;
+	string str = "    We are champion";
+	//string str1=" h i";
+	int n = str.size();
+	cout << n << endl;
+	string res = t.trans(str, n);
+	cout << res << endl;
+	system("pause");
+	return 0;
+}
