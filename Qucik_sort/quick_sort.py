@@ -24,3 +24,55 @@ s=[11,13,2,8,4,12,13]
 print(s)
 s1=quick_sort(s,0,len(s)-1)
 print(s1)
+
+
+
+#算法导论方法
+
+def partition(s,l,r):
+    i=l-1
+    x=s[r]
+    for j in range(l,r):
+        if s[j]<=x:
+            i=i+1
+            s[i],s[j]=s[j],s[i]
+    s[i+1],s[r]=s[r],s[i+1]
+    return i+1
+
+def quick_sort(s,left,right):
+    if(left<right):
+        k=partition(s,left,right)
+        quick_sort(s,left,k-1)
+        quick_sort(s,k+1,right)
+    return s
+
+
+s=[11,13,2,8,4,12,13]
+print(s)
+s1=quick_sort(s,0,len(s)-1)
+print(s1)
+
+
+#第三种方法
+def partition(s,l,r):
+    i=l-1
+    x=s[r]
+    for j in range(l,r):
+        if s[j]<=x:
+            i=i+1
+            s[i],s[j]=s[j],s[i]
+    s[i+1],s[r]=s[r],s[i+1]
+    return i+1
+
+def quick_sort(s,left,right):
+    if(left<right):
+        k=partition(s,left,right)
+        quick_sort(s,left,k-1)
+        quick_sort(s,k+1,right)
+    return s
+
+
+s=[11,13,2,8,4,12,13]
+print(s)
+s1=quick_sort(s,0,len(s)-1)
+print(s1)
