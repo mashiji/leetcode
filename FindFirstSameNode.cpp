@@ -105,12 +105,17 @@ int main()
 	if (pFirstSname)
 	{
 		cout << pFirstSname->value;
+		if (CalcLength(pA->pNext) > CalcLength(pB->pNext))
+			Destroy(pA);
+		else
+			Destroy(pB);
 	}
 	else
+	{
 		cout << "no found samenode";
-	delete pFirstSname;
-	delete pA;
-	delete pB;
+		Destroy(pA);
+		Destroy(pB);
+	}
 	system("pause");
 	return 0;
 }
